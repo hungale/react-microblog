@@ -1,0 +1,6 @@
+.PostListCard {
+  border: 1px solid lightgray;
+  border-radius: 5px;
+  width: 300px;
+  padding: 15px;
+}

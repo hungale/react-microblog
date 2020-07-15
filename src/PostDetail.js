@@ -1,6 +1,7 @@
 import React from "react";
 import { posts } from "./posts.json"
 import { NavLink, useParams } from "react-router-dom";
+import CommentForm from "./CommentForm";
 
 const PostDetail = () => {
   const { id } = useParams();
@@ -18,6 +19,9 @@ const PostDetail = () => {
       </h1>
       <h3>{post.description}</h3>
       <p>{post.body}</p>
+      <hr />
+      <h3>Comments</h3>
+      <CommentForm />
     </div>
   );
 };
