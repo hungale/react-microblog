@@ -4,8 +4,8 @@ import "./PostList.css";
 
 const PostList = ({ posts }) => {
   const renderPosts = () => (
-    posts.map(post => (
-      <PostListCard key={post.id} post={post} />
+    Object.keys(posts).map(id => (
+    <PostListCard key={id} post={posts[id]} id={id}/>
     ))
   );
 

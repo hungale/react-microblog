@@ -5,7 +5,7 @@ import CommentList from "./CommentList";
 
 const PostDetail = () => {
   const { id } = useParams();
-  const post = posts.find(post => post.id === +id);
+  const post = posts[id];
 
   return (
     <div className="PostDetail">

@@ -5,7 +5,10 @@ import { posts } from "./posts.json"
 
 const PostForm = () => {
   const { id } = useParams();
-  const post = posts.find(post => post.id === +id);
+  const post = posts[id];
+
+  // TODO: differentiate between updating and creation
+  // if it has an ID, just update, let the rootReducer handle it
 
   let INITIAL_STATE;
   if(post) {
