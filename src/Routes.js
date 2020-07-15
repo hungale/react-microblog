@@ -11,13 +11,13 @@ const Routes = () => {
     <div className="Routes">
       <Header />
       <Switch>
-        <Route exact path="/new">
+        <Route exact path="/posts/new">
           <NewPost />
         </Route>
-        <Route exact path="/:id">
+        <Route exact path="/posts/:id">
           <PostDetail/>
         </Route>
-        <Route exact path="/:id/edit">
+        <Route exact path="/posts/:id/edit">
           <PostForm/>
         </Route>
         <Route exact path="/">

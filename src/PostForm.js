@@ -1,12 +1,15 @@
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import * as a from "./actions"
 import { Link, useHistory, useParams } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
 import "./PostForm.css";
 
 const PostForm = () => {
   const { id } = useParams();
   const posts = useSelector(state => state.posts);
   const post = posts[id];
+  const dispatch = useDispatch();
+
 
   // TODO: differentiate between updating and creation
   // if it has an ID, just update, let the rootReducer handle it
@@ -25,6 +28,14 @@ const PostForm = () => {
   const [formData, setFormData] = useState(INITIAL_STATE);
   const history = useHistory();
 
+  const handlePost = () => {
+    if(id) {
+      dispatch(a.updatePost(id, formData));
+    } else { // no id
+      dispatch(a.addPost(formData));
+    }
+  }
+
   const handleChange = (evt) => {
     const { name, value } = evt.target;
     setFormData((currData) => ({ ...currData, [name]: value }));
@@ -33,6 +44,7 @@ const PostForm = () => {
   const handleSubmit = (evt) => {
     evt.preventDefault();
     console.log("submitted!", formData);
+    handlePost();
     history.push("/");
   };
 

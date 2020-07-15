@@ -6,7 +6,7 @@ const PostListCard = ({ post, id }) => {
   console.log(post)
   return (
     <li className="PostListCard">
-      <NavLink exact to={`/${id}`}>{post.title}</NavLink>
+      <NavLink exact to={`/posts/${id}`}>{post.title}</NavLink>
       <p>{post.description}</p>
     </li>
   );

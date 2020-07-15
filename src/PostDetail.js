@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink, useParams } from "react-router-dom";
+import { NavLink, useParams, Redirect } from "react-router-dom";
 import CommentList from "./CommentList";
 import { useSelector } from "react-redux";
 
@@ -8,13 +8,17 @@ const PostDetail = () => {
   const posts  = useSelector(state => state.posts);
   const post = posts[id];
 
+  if(!post) {
+    return <Redirect to="/"/>
+  }
+
   // figure out PostDisplay
   // add handler for deleting/updating posts/comments
 
   return (
     <div className="PostDetail">
       <h1>{post.title}
-        <NavLink exact to={`/${id}/edit`}>
+        <NavLink exact to={`/posts/${id}/edit`}>
           <button>Edit</button>
         </NavLink>
         <NavLink exact to="/">

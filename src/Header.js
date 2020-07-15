@@ -10,7 +10,7 @@ const Header = () => {
       <NavLink exact to="/">
         Blog
       </NavLink>
-      <NavLink exact to="/new">
+      <NavLink exact to="/posts/new">
         Add a new post!
       </NavLink>
 
