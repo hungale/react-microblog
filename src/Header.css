@@ -1,0 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
+.Header {
+  background-color: #e8ecef;
+  font-family: 'Noto Sans JP', sans-serif;
+  width: 80%;
+  padding: 10px 20px;
+}
+
+.Header > a {
+  margin-right: 10px;
+}
