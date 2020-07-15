@@ -17,7 +17,7 @@ const CommentForm = () => {
 
   return (
     <form onSubmit={handleSubmit} className="CommentForm">
-      <input name="comment" value={formData.comment} placeholder="New Comment" onChange={handleChange}/>
+      <input name="comment" value={formData.comment} placeholder="New Comment" onChange={handleChange} required />
       <button>Add</button>
     </form>
   );
