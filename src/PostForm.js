@@ -1,24 +1,39 @@
 import React, { useState } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { Link, useHistory, useParams } from "react-router-dom";
+import "./PostForm.css";
+import { posts } from "./posts.json"
 
-const NewPostForm = () => {
-  const INITIAL_STATE = { title: "", description: "", body: "" }
+const PostForm = () => {
+  const { id } = useParams();
+  const post = posts.find(post => post.id === +id);
+
+  let INITIAL_STATE;
+  if(post) {
+    INITIAL_STATE = {
+      title: post.title,
+      description: post.description,
+      body: post.body
+    };
+  } else {
+    INITIAL_STATE = { title: "", description: "", body: "" };
+  }
+  
   const [formData, setFormData] = useState(INITIAL_STATE);
   const history = useHistory();
 
   const handleChange = (evt) => {
     const { name, value } = evt.target;
     setFormData((currData) => ({ ...currData, [name]: value }));
-  }
+  };
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
     console.log("submitted!", formData);
     history.push("/");
-  }
+  };
 
   return (
-    <>
+    <div className="PostForm">
       <form onSubmit={handleSubmit}>
         <label htmlFor="title">Title</label>
         <input name="title" value={formData.title} onChange={handleChange} required />
@@ -29,8 +44,8 @@ const NewPostForm = () => {
         <button>Save</button>
       </form>
       <Link to="/"><button>Cancel</button></ Link>
-    </>
+    </div>
   );
 }
 
-export default NewPostForm;
+export default PostForm;

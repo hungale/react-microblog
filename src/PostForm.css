@@ -1,0 +1,16 @@
+/* .PostForm  */
+form {
+  /* display: flex;
+  flex-direction: column; */
+  width: 80%;
+  margin-left: 20px;
+}
+
+/* .PostForm  */
+input, textarea {
+  display: block;
+}
+
+button {
+  display: inline-block;
+}

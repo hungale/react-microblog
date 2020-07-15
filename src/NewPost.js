@@ -1,11 +1,11 @@
 import React from "react";
-import NewFormPost from "./NewPostForm";
+import PostForm from "./PostForm";
 
 const NewPost = () => {
   return (
     <div className="NewPost">
       NewPost! 
-      <NewFormPost />
+      <PostForm />
     </div>
   );
 }

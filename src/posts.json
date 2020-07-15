@@ -1,0 +1,10 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "why is the sky blue",
+      "description": "a treatise with a lot of words",
+      "body": "a lot of words"
+    }
+  ]
+}

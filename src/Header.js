@@ -7,7 +7,7 @@ const Header = () => {
     <div className="Header">
       <h1>Microblog</h1>
       <h3>Get in the Rithm of blogging!</h3>
-      <NavLink exact to="/blog">
+      <NavLink exact to="/">
         Blog
       </NavLink>
       <NavLink exact to="/new">
