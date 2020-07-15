@@ -12,3 +12,9 @@ export const updatePost = (id, updatedPost) => {
     payload: {id, updatedPost}
   }
 }
+export const deletePost = (id) => {
+  return {
+    type: t.DELETE_POST,
+    payload: id
+  }
+}

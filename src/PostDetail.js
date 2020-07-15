@@ -1,16 +1,23 @@
 import React from "react";
-import { NavLink, useParams, Redirect } from "react-router-dom";
+import { NavLink, useParams, Redirect, useHistory } from "react-router-dom";
 import CommentList from "./CommentList";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { deletePost } from "./actions";
 
 const PostDetail = () => {
   const { id } = useParams();
   const posts  = useSelector(state => state.posts);
   const post = posts[id];
+  const dispatch = useDispatch();
+  const history = useHistory();
 
   if(!post) {
     return <Redirect to="/"/>
   }
+  const handleDelete = () => {
+    dispatch(deletePost(id));
+    history.push("/");
+  };
 
   // figure out PostDisplay
   // add handler for deleting/updating posts/comments
@@ -22,7 +29,7 @@ const PostDetail = () => {
           <button>Edit</button>
         </NavLink>
         <NavLink exact to="/">
-          <button>Delete</button>
+          <button onClick={handleDelete}>Delete</button>
         </NavLink>
       </h1>
       <h3>{post.description}</h3>

@@ -7,7 +7,6 @@ const DEFAULT_STATE = { posts };
 const rootReducer = (state = DEFAULT_STATE, action) => {
   switch (action.type) {
     case t.ADD_POST:
-      // return { ...state};
       return { ...state, posts: { ...state.posts, [uuid()]: action.payload } };
     case t.UPDATE_POST:
       // make a copy of the original post object from the state.
@@ -22,6 +21,10 @@ const rootReducer = (state = DEFAULT_STATE, action) => {
           },
         },
       };
+    case t.DELETE_POST:
+      const postListCopy = { ...state.posts };
+      delete postListCopy[action.payload]
+      return { ...state, posts: postListCopy};
     default:
       return state;
   }
