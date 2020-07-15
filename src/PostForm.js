@@ -1,10 +1,11 @@
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
 import { Link, useHistory, useParams } from "react-router-dom";
 import "./PostForm.css";
-import { posts } from "./posts.json"
 
 const PostForm = () => {
   const { id } = useParams();
+  const posts = useSelector(state => state.posts);
   const post = posts[id];
 
   // TODO: differentiate between updating and creation

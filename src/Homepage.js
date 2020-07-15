@@ -1,9 +1,9 @@
 import React from "react";
-import { posts } from "./posts.json";
+import { useSelector } from "react-redux";
 import PostList from "./PostList";
 
 const Homepage = () => {
-  console.log(posts);
+  const posts = useSelector(state => state.posts);
 
   return (
     <div className="Homepage">

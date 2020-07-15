@@ -1,11 +1,15 @@
 import React from "react";
-import { posts } from "./posts.json"
 import { NavLink, useParams } from "react-router-dom";
 import CommentList from "./CommentList";
+import { useSelector } from "react-redux";
 
 const PostDetail = () => {
   const { id } = useParams();
+  const posts  = useSelector(state => state.posts);
   const post = posts[id];
+
+  // figure out PostDisplay
+  // add handler for deleting/updating posts/comments
 
   return (
     <div className="PostDetail">
