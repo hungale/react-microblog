@@ -1,22 +1,28 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { NavLink, useParams, Redirect, useHistory } from "react-router-dom";
 import CommentList from "./CommentList";
 import { useDispatch, useSelector } from "react-redux";
-import { deletePost } from "./actions";
+import * as a from "./actions";
 
 const PostDetail = () => {
   const { id } = useParams();
   const posts  = useSelector(state => state.posts);
   const post = posts[id];
+  // const titles = useSelector(state => state.titles);
   const dispatch = useDispatch();
   const history = useHistory();
 
-  if(!post) {
-    return <Redirect to="/"/>
+
+  useEffect(function handleGetPostDetails() {
+    dispatch(a.getPostDetailsFromAPI(id));
+  }, [dispatch, id]);
+
+  if (!post) {
+    return <Redirect to="/" />
   }
-  
+
   const handleDelete = () => {
-    dispatch(deletePost(id));
+    dispatch(a.deletePost(id));
     history.push("/");
   };
 
@@ -32,8 +38,8 @@ const PostDetail = () => {
       </h1>
       <h3>{post.description}</h3>
       <p>{post.body}</p>
-      <hr/>
-      <CommentList comments={post.comments}/>
+      <hr />
+      <CommentList comments={post.comments} />
     </div>
   );
 };
