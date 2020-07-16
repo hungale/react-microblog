@@ -1,8 +1,14 @@
 import React, { useState } from "react";
+import * as a from "./actions";
+import { useDispatch } from "react-redux";
+import { useParams } from "react-router-dom";
 
 const CommentForm = () => {
   const INITIAL_STATE = { comment: "" }
   const [formData, setFormData] = useState(INITIAL_STATE);
+  const { id } = useParams();
+  const dispatch = useDispatch();
+
 
   const handleChange = (evt) => {
     const { name, value } = evt.target;
@@ -11,7 +17,8 @@ const CommentForm = () => {
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
-    console.log("submitted!", formData);
+    const postId = id; 
+    dispatch(a.addComment(formData, postId));
     setFormData(INITIAL_STATE);
   };
 

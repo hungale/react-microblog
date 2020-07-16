@@ -14,13 +14,11 @@ const PostDetail = () => {
   if(!post) {
     return <Redirect to="/"/>
   }
+  
   const handleDelete = () => {
     dispatch(deletePost(id));
     history.push("/");
   };
-
-  // figure out PostDisplay
-  // add handler for deleting/updating posts/comments
 
   return (
     <div className="PostDetail">
