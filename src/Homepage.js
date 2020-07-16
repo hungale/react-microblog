@@ -8,7 +8,7 @@ const Homepage = () => {
   const posts = useSelector(state => state.posts);
   const dispatch = useDispatch();
 
-  useEffect(function handleGetPosts() {
+  useEffect(() => {
     dispatch(a.getPostsFromAPI());
   }, [dispatch]);
 

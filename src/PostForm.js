@@ -30,9 +30,9 @@ const PostForm = () => {
 
   const handlePost = () => {
     if(id) {
-      dispatch(a.updatePost(id, formData));
+      dispatch(a.updatePostInAPI(id, formData));
     } else { // no id
-      dispatch(a.addPost(formData));
+      dispatch(a.addPostToAPI(formData));
     }
   }
 
@@ -45,6 +45,7 @@ const PostForm = () => {
     evt.preventDefault();
     console.log("submitted!", formData);
     handlePost();
+    // sometimes it can redirect before it's even done putting in redux
     history.push("/");
   };
 

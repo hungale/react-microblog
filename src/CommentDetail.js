@@ -9,8 +9,9 @@ const CommentDetail = ({ comment }) => {
 
   const handleDelete = () => {
     const postId = id;
-    dispatch(a.deleteComment(comment.id, postId));
-  }
+    // dispatch(a.deleteComment(comment.id, postId));
+    dispatch(a.deleteCommentFromAPI(comment.id, postId));
+  };
 
   return (
     <li className="CommentDetail">

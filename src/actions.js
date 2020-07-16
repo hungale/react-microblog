@@ -8,66 +8,105 @@ export const getPostsFromAPI = () => {
     let res = await axios.get(`${BASE_URL}/api/posts`);
     dispatch(loadPosts(res.data));
   };
-}
+};
 
 const loadPosts = (data) => {
   return {
     type: t.LOAD_POSTS,
     payload: data
   };
-}
-
+};
 
 export const getPostDetailsFromAPI = (id) => {
   return async (dispatch) => {
     let res = await axios.get(`${BASE_URL}/api/posts/${id}`);
     dispatch(loadPostDetails(res.data));
-  }
-}
+  };
+};
 
 const loadPostDetails = (data) => {
   return {
     type: t.LOAD_POST_DETAILS,
     payload: data
   };
-}
+};
 
+export const addPostToAPI = (newPost) => {
+  return async (dispatch) => {
+    const res = await axios.post(`${BASE_URL}/api/posts`, newPost);
+    dispatch(addPost(res.data));
+  };
+};
 
 // newPost => {title, description, body}
-export const addPost = (newPost) => {
+const addPost = (newPost) => {
   return {
     type: t.ADD_POST,
     payload: { ...newPost, comments: [] }
   };
-}
+};
+
+export const updatePostInAPI = (id, updatedPost) => {
+  return async (dispatch) => {
+    const res = await axios.put(`${BASE_URL}/api/posts/${id}`, updatedPost);
+    dispatch(updatePost(res.data));
+  };
+};
 
 // updatedPost => {title, description, body, comments: [...]}
-export const updatePost = (id, updatedPost) => {
+const updatePost = (updatedPost) => {
   return {
     type: t.UPDATE_POST,
-    payload: { id, updatedPost }
+    payload: updatedPost
   };
+};
+
+
+export const deleteFromAPI = (id) => {
+  return async (dispatch) => {
+    await axios.delete(`${BASE_URL}/api/posts/${id}`);
+    dispatch(deletePost(id));
+  }
 }
 
-export const deletePost = (id) => {
+const deletePost = (id) => {
   return {
     type: t.DELETE_POST,
     payload: id
   };
 }
 
+export const addCommentToAPI = ({ text }, postId) => {
+  return async (dispatch) =>  {
+    const res = await axios.post(`${BASE_URL}/api/posts/${postId}/comments`, 
+              {text});
+    // note, it will return message: deleted even if it doesn't exist
+    dispatch(addComment(res.data, postId));
+  };
+};
+
 // comment => ""
-export const addComment = ({ comment }, postId) => {
+const addComment = ({text, id}, postId) => {
   return {
     type: t.ADD_COMMENT,
-    payload: { comment, postId }
+    payload: { text, commentId: id, postId }
   };
-}
+};
 
-export const deleteComment = (commentId, postId) => {
+export const deleteCommentFromAPI = (commentId, postId) => {
+  return async (dispatch) =>  {
+    await axios.delete(`${BASE_URL}/api/posts/${postId}/comments/${commentId}`);
+    
+    // note, it will return message: deleted even if it doesn't exist
+    dispatch(deleteComment(commentId, postId));
+  };
+};
+
+
+const deleteComment = (commentId, postId) => {
   return {
     type: t.DELETE_COMMENT,
     payload: { commentId, postId }
   };
-}
+};
 
