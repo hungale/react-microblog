@@ -6,15 +6,3 @@
   color: tomato;
 }
 
-.JokeList-getmore {
-  margin: 1em 0;
-  font-size: 150%;
-  border-radius: 0.5em;
-  background-color: tomato;
-  color: white;
-}
-
-.JokeList-getmore:disabled {
-  background-color: #ccc;
-  cursor: not-allowed;
-}

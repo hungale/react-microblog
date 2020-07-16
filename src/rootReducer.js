@@ -2,7 +2,7 @@ import * as t from "./actionTypes";
 // import { posts } from "./posts";
 import { v4 as uuid } from "uuid";
 // should have empty default_state once we have backend 
-const DEFAULT_STATE = { posts: {}, titles: []};
+const DEFAULT_STATE = { posts: {}, titles: [], loading: true };
 
 const rootReducer = (state = DEFAULT_STATE, action) => {
   let post; // WOULD-BE-NICE: change post to postCopy 
@@ -14,7 +14,9 @@ const rootReducer = (state = DEFAULT_STATE, action) => {
       return {...state, posts: { ...state.posts, [action.payload.id]: action.payload }};
 
     case t.ADD_POST:
+      // could also update title here
       return { ...state, posts: { ...state.posts, [action.payload.id]: action.payload } };
+    
     case t.UPDATE_POST:
       // make a copy of the original post object from the state.
       const original = { ...state.posts[action.payload.id] };
@@ -27,10 +29,12 @@ const rootReducer = (state = DEFAULT_STATE, action) => {
           },
         },
       };
+    
     case t.DELETE_POST:
       const postListCopy = { ...state.posts };
       delete postListCopy[action.payload]
       return { ...state, posts: postListCopy };
+    
     case t.ADD_COMMENT:
       post = { ...state.posts[action.payload.postId] };
       post.comments = [
@@ -41,10 +45,18 @@ const rootReducer = (state = DEFAULT_STATE, action) => {
         ...state,
         posts: { ...state.posts, [action.payload.postId]: post },
       };
+    
     case t.DELETE_COMMENT:
       post = { ...state.posts[action.payload.postId] };
       post.comments = post.comments.filter(comment => comment.id !== action.payload.commentId);
       return { ...state, posts: { ...state.posts, [action.payload.postId]: post } };
+    
+    case t.START_LOADING:
+      return { ...state, loading: true };
+
+    case t.STOP_LOADING:
+      return { ...state, loading: false };
+    
     default:
       return state;
   }

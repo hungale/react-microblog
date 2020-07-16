@@ -5,9 +5,10 @@ import * as a from "./actions";
 
 
 const Homepage = () => {
-  const posts = useSelector(state => state.posts);
+  // const titles = useSelector(state => state.titles);
   const dispatch = useDispatch();
 
+  // maybe make this only run if there are no posts
   useEffect(() => {
     dispatch(a.getPostsFromAPI());
   }, [dispatch]);
@@ -15,7 +16,7 @@ const Homepage = () => {
   return (
     <div className="Homepage">
       WELCOME TO THE HOMEPAGE OF MICROBLOGLY!!
-      <PostList posts={posts} />
+      <PostList />
     </div>
   );
 };

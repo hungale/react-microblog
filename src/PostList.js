@@ -3,15 +3,12 @@ import PostListCard from "./PostListCard";
 import { useSelector } from "react-redux";
 import "./PostList.css";
 
-const PostList = ({ posts }) => {
+const PostList = () => {
   const titles = useSelector(state => state.titles);
 
   const renderPosts = () => (
-    // Object.keys(posts).map(id => (
-    //   <PostListCard key={id} post={posts[id]} id={id} />
-    // ))
-    titles.map(post => (
-      <PostListCard key={post.id} post={post} id={post.id} />
+    titles.map(title => (
+      <PostListCard key={title.id} post={title} id={title.id} />
     ))
   );
 

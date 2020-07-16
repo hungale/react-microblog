@@ -4,30 +4,20 @@ import axios from "axios";
 const BASE_URL = "http://localhost:5000"
 
 export const getPostsFromAPI = () => {
-  return async (dispatch) =>  {
+  // try-catch block would be nice refactor for AJAX requests
+  return async (dispatch) => {
     let res = await axios.get(`${BASE_URL}/api/posts`);
     dispatch(loadPosts(res.data));
-  };
-};
-
-const loadPosts = (data) => {
-  return {
-    type: t.LOAD_POSTS,
-    payload: data
   };
 };
 
 export const getPostDetailsFromAPI = (id) => {
   return async (dispatch) => {
     let res = await axios.get(`${BASE_URL}/api/posts/${id}`);
+    console.log(res, id);
+    // if invalid, res.data comes back as ""
     dispatch(loadPostDetails(res.data));
-  };
-};
-
-const loadPostDetails = (data) => {
-  return {
-    type: t.LOAD_POST_DETAILS,
-    payload: data
+    dispatch(stopLoading());
   };
 };
 
@@ -35,6 +25,60 @@ export const addPostToAPI = (newPost) => {
   return async (dispatch) => {
     const res = await axios.post(`${BASE_URL}/api/posts`, newPost);
     dispatch(addPost(res.data));
+  };
+};
+
+export const updatePostInAPI = (id, updatedPost) => {
+  return async (dispatch) => {
+    const res = await axios.put(`${BASE_URL}/api/posts/${id}`, updatedPost);
+    dispatch(updatePost(res.data));
+  };
+};
+
+export const deleteFromAPI = (id) => {
+  return async (dispatch) => {
+    await axios.delete(`${BASE_URL}/api/posts/${id}`);
+    dispatch(deletePost(id));
+  }
+}
+
+export const addCommentToAPI = ({ text }, postId) => {
+  return async (dispatch) => {
+    const res = await axios.post(`${BASE_URL}/api/posts/${postId}/comments`,
+      { text });
+    // note, it will return message: deleted even if it doesn't exist
+    dispatch(addComment(res.data, postId));
+  };
+};
+
+export const deleteCommentFromAPI = (commentId, postId) => {
+  return async (dispatch) => {
+    await axios.delete(`${BASE_URL}/api/posts/${postId}/comments/${commentId}`);
+
+    // note, it will return message: deleted even if it doesn't exist
+    dispatch(deleteComment(commentId, postId));
+  };
+};
+
+// action creators
+export const startLoading = () => {
+  return { type: "START_LOADING" };
+}
+
+export const stopLoading = () => {
+  return { type: "STOP_LOADING" };
+}
+const loadPosts = (data) => {
+  return {
+    type: t.LOAD_POSTS,
+    payload: data
+  };
+};
+
+const loadPostDetails = (data) => {
+  return {
+    type: t.LOAD_POST_DETAILS,
+    payload: data
   };
 };
 
@@ -46,13 +90,6 @@ const addPost = (newPost) => {
   };
 };
 
-export const updatePostInAPI = (id, updatedPost) => {
-  return async (dispatch) => {
-    const res = await axios.put(`${BASE_URL}/api/posts/${id}`, updatedPost);
-    dispatch(updatePost(res.data));
-  };
-};
-
 // updatedPost => {title, description, body, comments: [...]}
 const updatePost = (updatedPost) => {
   return {
@@ -61,14 +98,6 @@ const updatePost = (updatedPost) => {
   };
 };
 
-
-export const deleteFromAPI = (id) => {
-  return async (dispatch) => {
-    await axios.delete(`${BASE_URL}/api/posts/${id}`);
-    dispatch(deletePost(id));
-  }
-}
-
 const deletePost = (id) => {
   return {
     type: t.DELETE_POST,
@@ -76,32 +105,13 @@ const deletePost = (id) => {
   };
 }
 
-export const addCommentToAPI = ({ text }, postId) => {
-  return async (dispatch) =>  {
-    const res = await axios.post(`${BASE_URL}/api/posts/${postId}/comments`, 
-              {text});
-    // note, it will return message: deleted even if it doesn't exist
-    dispatch(addComment(res.data, postId));
-  };
-};
-
 // comment => ""
-const addComment = ({text, id}, postId) => {
+const addComment = ({ text, id }, postId) => {
   return {
     type: t.ADD_COMMENT,
     payload: { text, commentId: id, postId }
   };
 };
-
-export const deleteCommentFromAPI = (commentId, postId) => {
-  return async (dispatch) =>  {
-    await axios.delete(`${BASE_URL}/api/posts/${postId}/comments/${commentId}`);
-    
-    // note, it will return message: deleted even if it doesn't exist
-    dispatch(deleteComment(commentId, postId));
-  };
-};
-
 
 const deleteComment = (commentId, postId) => {
   return {
