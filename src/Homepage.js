@@ -5,7 +5,7 @@ import * as a from "./actions";
 
 
 const Homepage = () => {
-  const titles = useSelector(state => state.titles);
+  const titles = useSelector(state => state.titles.sort((a,b) => b.votes - a.votes));
   const dispatch = useDispatch();
 
   // maybe make this only run if there are no posts
@@ -16,8 +16,6 @@ const Homepage = () => {
 
     }
   }, [dispatch, titles]);
-  
-  titles.sort((a,b) => b.votes - a.votes);   
   
   return (
     <div className="Homepage">

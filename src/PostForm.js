@@ -43,7 +43,6 @@ const PostForm = () => {
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
-    console.log("submitted!", formData);
     handlePost();
     // sometimes it can redirect before it's even done putting in redux
     history.push("/");

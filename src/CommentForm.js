@@ -3,8 +3,8 @@ import * as a from "./actions";
 import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 
-const CommentForm = () => {
-  const INITIAL_STATE = { text: "" }
+const CommentForm = ({ text = "", commentId = undefined, handleEdit }) => {
+  const INITIAL_STATE = commentId ? { text , commentId } : { text: "" };
   const [formData, setFormData] = useState(INITIAL_STATE);
   const { id } = useParams();
   const dispatch = useDispatch();
@@ -17,8 +17,13 @@ const CommentForm = () => {
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
-    const postId = id; 
-    dispatch(a.addCommentToAPI(formData, postId));
+    const postId = id;
+    if (commentId) {
+      handleEdit();
+      dispatch(a.updateCommentInAPI(formData, commentId, postId))
+    } else {
+      dispatch(a.addCommentToAPI(formData, postId));
+    }
     setFormData(INITIAL_STATE);
   };
 

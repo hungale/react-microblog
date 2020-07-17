@@ -15,7 +15,6 @@ export const getPostDetailsFromAPI = (id) => {
   return async (dispatch) => {
     dispatch(startLoading());
     let res = await axios.get(`${BASE_URL}/api/posts/${id}`);
-    console.log(res, id);
     // if invalid, res.data comes back as ""
     dispatch(loadPostDetails(res.data));
     dispatch(stopLoading());
@@ -65,6 +64,13 @@ export const updateVotesInAPI = (direction, postId) => {
   return async (dispatch) => {
     let res = await axios.post(`${BASE_URL}/api/posts/${postId}/vote/${direction}`);
     dispatch(updateVotes(res.data, postId));
+  }
+}
+
+export const updateCommentInAPI = ({ text }, commentId, postId) => {
+  return async (dispatch) => {
+    let res = await axios.put(`${BASE_URL}/api/posts/${postId}/comments/${commentId}`, { text, id: commentId });
+    dispatch(updateComment(res.data, postId));
   }
 }
 
@@ -132,5 +138,12 @@ const updateVotes = ({ votes }, postId) => {
   return {
     type: t.UPDATE_VOTES,
     payload: { votes, postId }
+  }
+}
+
+const updateComment = ({ id, text }, postId) => {
+  return {
+    type: t.UPDATE_COMMENT,
+    payload: { id, text, postId }
   }
 }
