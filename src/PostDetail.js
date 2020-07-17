@@ -4,11 +4,11 @@ import CommentList from "./CommentList";
 import { useDispatch, useSelector } from "react-redux";
 import * as a from "./actions";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSpinner } from "@fortawesome/free-solid-svg-icons";
+import { faSpinner, faThumbsUp, faThumbsDown } from "@fortawesome/free-solid-svg-icons";
 
 const PostDetail = () => {
   const { id } = useParams();
-  const post  = useSelector(state => state.posts[id]);
+  const post = useSelector(state => state.posts[id]);
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -16,18 +16,14 @@ const PostDetail = () => {
   const loading = useSelector(state => state.loading);
 
   useEffect(() => {
-    if(!post) {
+    if (!post) {
       dispatch(a.getPostDetailsFromAPI(id));
-    } else {
-      dispatch(a.stopLoading());
-    }
-    // cleanup function, reset loading to true
-    return () => dispatch(a.startLoading());
+    } 
   }, [dispatch, id, post]);
 
   // ASK: how to use loading state, so we don't have to click twice
-  if(loading) {
-    return <FontAwesomeIcon icon={faSpinner} spin size="6x"/>
+  if (loading) {
+    return <FontAwesomeIcon icon={faSpinner} spin size="6x" />
   }
   if (!post) {
     return <Redirect to="/" />
@@ -38,9 +34,13 @@ const PostDetail = () => {
     history.push("/");
   };
 
+  const votes = (direction, id) => {
+    dispatch(a.updateVotesInAPI(direction, id));
+  }
+
   // could also do:
   // { body, description, body } = post 
-  
+
   return (
     <div className="PostDetail">
       <h1>{post.title}
@@ -52,6 +52,9 @@ const PostDetail = () => {
         </NavLink>
       </h1>
       <h3>{post.description}</h3>
+      <span>{post.votes} votes</span>
+      <button onClick={() => votes("up", id)}><FontAwesomeIcon icon={faThumbsUp} /></button>
+      <button onClick={() => votes("down", id)}><FontAwesomeIcon icon={faThumbsDown} /></button>
       <p>{post.body}</p>
       <hr />
       <CommentList comments={post.comments} />

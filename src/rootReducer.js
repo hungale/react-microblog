@@ -8,15 +8,15 @@ const rootReducer = (state = DEFAULT_STATE, action) => {
   let post; // WOULD-BE-NICE: change post to postCopy 
   switch (action.type) {
     case t.LOAD_POSTS:
-      return {...state, titles : action.payload};
-    
+      return { ...state, titles: action.payload };
+
     case t.LOAD_POST_DETAILS:
-      return {...state, posts: { ...state.posts, [action.payload.id]: action.payload }};
+      return { ...state, posts: { ...state.posts, [action.payload.id]: action.payload } };
 
     case t.ADD_POST:
       // could also update title here
       return { ...state, posts: { ...state.posts, [action.payload.id]: action.payload } };
-    
+
     case t.UPDATE_POST:
       // make a copy of the original post object from the state.
       const original = { ...state.posts[action.payload.id] };
@@ -29,12 +29,37 @@ const rootReducer = (state = DEFAULT_STATE, action) => {
           },
         },
       };
-    
+
+    case t.UPDATE_VOTES:
+      let postsCopy = { ...state.posts };
+
+      post = { ...state.posts[action.payload.postId] };
+
+      if (Object.keys(post).length !== 0) {
+        post.votes = action.payload.votes;
+        postsCopy = { ...postsCopy, [action.payload.postId]: post };
+      }
+      
+      let updatedTitles = state.titles.map(title => {
+        if (title.id === action.payload.postId) {
+          let titleCopy = { ...title };
+          titleCopy.votes = action.payload.votes;
+          return titleCopy;
+        } else {
+          return title;
+        }
+      });
+
+      return { ...state, 
+               posts: postsCopy,
+               titles: updatedTitles 
+             };
+
     case t.DELETE_POST:
       const postListCopy = { ...state.posts };
       delete postListCopy[action.payload]
       return { ...state, posts: postListCopy };
-    
+
     case t.ADD_COMMENT:
       post = { ...state.posts[action.payload.postId] };
       post.comments = [
@@ -45,18 +70,18 @@ const rootReducer = (state = DEFAULT_STATE, action) => {
         ...state,
         posts: { ...state.posts, [action.payload.postId]: post },
       };
-    
+
     case t.DELETE_COMMENT:
       post = { ...state.posts[action.payload.postId] };
       post.comments = post.comments.filter(comment => comment.id !== action.payload.commentId);
       return { ...state, posts: { ...state.posts, [action.payload.postId]: post } };
-    
+
     case t.START_LOADING:
       return { ...state, loading: true };
 
     case t.STOP_LOADING:
       return { ...state, loading: false };
-    
+
     default:
       return state;
   }

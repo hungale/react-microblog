@@ -5,13 +5,16 @@ import * as a from "./actions";
 
 
 const Homepage = () => {
-  // const titles = useSelector(state => state.titles);
+  const titles = useSelector(state => state.titles);
   const dispatch = useDispatch();
 
   // maybe make this only run if there are no posts
   useEffect(() => {
-    dispatch(a.getPostsFromAPI());
-  }, [dispatch]);
+    // have if state to check if posts already exists.
+    if (!titles?.length) {
+      dispatch(a.getPostsFromAPI());
+    }
+  }, [dispatch, titles]);
 
   return (
     <div className="Homepage">

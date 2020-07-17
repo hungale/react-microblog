@@ -13,6 +13,7 @@ export const getPostsFromAPI = () => {
 
 export const getPostDetailsFromAPI = (id) => {
   return async (dispatch) => {
+    dispatch(startLoading());
     let res = await axios.get(`${BASE_URL}/api/posts/${id}`);
     console.log(res, id);
     // if invalid, res.data comes back as ""
@@ -59,6 +60,13 @@ export const deleteCommentFromAPI = (commentId, postId) => {
     dispatch(deleteComment(commentId, postId));
   };
 };
+
+export const updateVotesInAPI = (direction, postId) => {
+  return async (dispatch) => {
+    let res = await axios.post(`${BASE_URL}/api/posts/${postId}/vote/${direction}`);
+    dispatch(updateVotes(res.data, postId));
+  }
+}
 
 // action creators
 export const startLoading = () => {
@@ -120,3 +128,9 @@ const deleteComment = (commentId, postId) => {
   };
 };
 
+const updateVotes = ({ votes }, postId) => {
+  return {
+    type: t.UPDATE_VOTES,
+    payload: { votes, postId }
+  }
+}
