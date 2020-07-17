@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import * as a from "./actions";
 import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
+import "./CommentForm.css";
 
 const CommentForm = ({ text = "", commentId = undefined, handleEdit }) => {
   const INITIAL_STATE = commentId ? { text , commentId } : { text: "" };

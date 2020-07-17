@@ -1,10 +1,11 @@
-import React, { useEffect } from "react";
-import { NavLink, useParams, Redirect, useHistory } from "react-router-dom";
-import CommentList from "./CommentList";
-import { useDispatch, useSelector } from "react-redux";
-import * as a from "./actions";
+import { faSpinner, faThumbsDown, faThumbsUp } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSpinner, faThumbsUp, faThumbsDown } from "@fortawesome/free-solid-svg-icons";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { NavLink, Redirect, useHistory, useParams } from "react-router-dom";
+import * as a from "./actions";
+import CommentList from "./CommentList";
+import "./PostDetail.css";
 
 const PostDetail = () => {
   const { id } = useParams();
@@ -35,7 +36,7 @@ const PostDetail = () => {
   };
 
   const votes = (direction, id) => {
-    dispatch(a.updateVotesInAPI(direction, id));
+    dispatch(a.updateVotesInAPI(direction, +id));
   }
 
   // could also do:

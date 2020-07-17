@@ -1,8 +1,10 @@
-@import url("https://use.fontawesome.com/releases/v5.3.1/css/all.css");
-
-.loading {
-  width: 4em;
-  margin: 200px auto 0 auto;
-  color: tomato;
+.PostDetail {
+  width: 80%;
+  margin-left: 10px;
+  border: 2px solid black;
 }
 
+.PostDetail button {
+  position: relative;
+  right: 0;
+}
