@@ -9,6 +9,8 @@ import { composeWithDevTools } from "redux-devtools-extension"
 import { Provider } from "react-redux";
 import rootReducer from './rootReducer';
 
+import "bootstrap/dist/css/bootstrap.min.css";
+
 const store = createStore(
   rootReducer,
   composeWithDevTools(
