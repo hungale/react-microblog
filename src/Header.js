@@ -5,8 +5,8 @@ import { NavLink } from "react-router-dom";
 const Header = () => {
   return (
     <div className="Header">
-      <h1>Microblog</h1>
-      <h3>Get in the Rithm of blogging!</h3>
+      <h1 className="Header-title">Microblog</h1>
+      <p className="Header-description">Get in the Rithm of blogging!</p>
       <NavLink exact to="/">
         Blog
       </NavLink>

@@ -15,7 +15,7 @@ const PostForm = () => {
   // if it has an ID, just update, let the rootReducer handle it
 
   let INITIAL_STATE;
-  if(post) {
+  if (post) {
     INITIAL_STATE = {
       title: post.title,
       description: post.description,
@@ -24,12 +24,12 @@ const PostForm = () => {
   } else {
     INITIAL_STATE = { title: "", description: "", body: "" };
   }
-  
+
   const [formData, setFormData] = useState(INITIAL_STATE);
   const history = useHistory();
 
   const handlePost = () => {
-    if(id) {
+    if (id) {
       dispatch(a.updatePostInAPI(id, formData));
     } else { // no id
       dispatch(a.addPostToAPI(formData));
@@ -50,16 +50,18 @@ const PostForm = () => {
 
   return (
     <div className="PostForm">
-      <form onSubmit={handleSubmit}>
+      <form className="form-group" onSubmit={handleSubmit}>
         <label htmlFor="title">Title</label>
-        <input name="title" value={formData.title} onChange={handleChange} required />
+        <input className="form-control" name="title" value={formData.title} onChange={handleChange} required />
         <label htmlFor="description">Description</label>
-        <input name="description" value={formData.description} onChange={handleChange} required />
+        <input className="form-control" name="description" value={formData.description} onChange={handleChange} required />
         <label htmlFor="body">Body</label>
-        <textarea name="body" value={formData.body} onChange={handleChange} required />
-        <button>Save</button>
+        <textarea className="form-control" name="body" value={formData.body} onChange={handleChange} required />
+        <Link to="/"><button className="btn btn-secondary float-right">Cancel</button></ Link>
+        <button className="btn btn-primary float-right">Save</button>
+
       </form>
-      <Link to="/"><button>Cancel</button></ Link>
+
     </div>
   );
 }

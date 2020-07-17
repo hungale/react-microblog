@@ -20,7 +20,7 @@ const Homepage = () => {
   
   return (
     <div className="Homepage">
-      <h4 className="Homepage-title">WELCOME TO THE HOMEPAGE OF MICROBLOGLY!!</h4>
+      <h4 className="Homepage-title">WELCOME TO THE HOMEPAGE OF MICROBLOG</h4>
       <PostList />
     </div>
   );

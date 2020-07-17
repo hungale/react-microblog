@@ -2,10 +2,30 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
 .Header {
   background-color: #e8ecef;
-  font-family: 'Noto Sans JP', sans-serif;
-  padding: 10px 20px;
+  padding: 50px 20px 50px 30px;
+  border-radius: 0px 0px 10px 10px;
+}
+
+.Header-title {
+    font-family: 'Noto Sans JP', sans-serif;
+
+}
+
+.Header-description {
+  margin: 10px 0px;
+  font-size: 20px;
 }
 
 .Header > a {
-  margin-right: 10px;
+  margin: 10px 10px 10px 0px;
+}
+
+.Header a.active {
+  font-weight: bold;
+}
+
+.Header a:hover {
+  transition: 0.2s ease-in;
+  color: lightskyblue;
+  text-decoration: none;
 }

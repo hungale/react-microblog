@@ -26,7 +26,9 @@ const PostDetail = () => {
   if (loading) {
     return <FontAwesomeIcon icon={faSpinner} spin size="6x" />
   }
+  console.log("past loading...", post);
   if (!post) {
+    console.log("post...", post);
     return <Redirect to="/" />
   }
 

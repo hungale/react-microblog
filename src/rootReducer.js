@@ -2,6 +2,10 @@ import * as t from "./actionTypes";
 
 const DEFAULT_STATE = { posts: {}, titles: [], loading: true };
 
+// const makeTitleFromPost = ({id, title, description, votes}) => {
+//   return {id, title, description, votes};
+// }
+
 const rootReducer = (state = DEFAULT_STATE, action) => {
   let post; // WOULD-BE-NICE: change post to postCopy 
   switch (action.type) {
@@ -12,7 +16,8 @@ const rootReducer = (state = DEFAULT_STATE, action) => {
       return { ...state, posts: { ...state.posts, [action.payload.id]: action.payload } };
 
     case t.ADD_POST:
-      // could also update title here
+      // TODO: fix bug where the titles does not get updated when adding a new post.
+      // let newTitle = makeTitleFromPost(action.payload);
       return { ...state, posts: { ...state.posts, [action.payload.id]: action.payload } };
 
     case t.UPDATE_POST:

@@ -11,8 +11,8 @@ const PostListCard = ({ post, id, votes}) => {
       <NavLink exact to={`/posts/${id}`}>{post.title}</NavLink>
       <p>{post.description}</p>
       <p>{post.votes} votes</p>
-      <button onClick={() => votes("up", id)}><FontAwesomeIcon icon={faThumbsUp} /></button>
-      <button onClick={() => votes("down", id)}><FontAwesomeIcon icon={faThumbsDown} /></button>
+      <button className="btn btn-success" onClick={() => votes("up", id)}><FontAwesomeIcon icon={faThumbsUp} /></button>
+      <button className="btn btn-danger" onClick={() => votes("down", id)}><FontAwesomeIcon icon={faThumbsDown} /></button>
     </li>
   );
 };

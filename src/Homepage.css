@@ -1,11 +1,9 @@
 .Homepage {
-  width: 80%;
+
 }
 
 .Homepage-title {
-  border: 5px dotted pink;
-  border-radius: 10px;
   padding: 10px;
+  margin: 25px auto;
   width: fit-content;
-  margin: auto;
 }

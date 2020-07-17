@@ -5,7 +5,7 @@ import Routes from './Routes';
 
 const App = () => {
   return (
-    <div className="App container">
+    <div className="App container-fluid">
       <BrowserRouter>
         <Routes/>
       </BrowserRouter>

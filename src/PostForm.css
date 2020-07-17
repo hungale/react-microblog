@@ -1,16 +1,21 @@
 /* .PostForm  */
-form {
-  /* display: flex;
-  flex-direction: column; */
-  width: 80%;
-  margin-left: 20px;
+.PostForm form {
+  width: 60%;
+}
+
+.PostForm {
+  margin-left: 50px;
 }
 
 /* .PostForm  */
-input, textarea {
+.PostForm input, textarea {
   display: block;
 }
 
-button {
-  display: inline-block;
+.PostForm button {
+  /* display: inline-block; */
+  /* margin-; */
+  /* position: absolute; */
+  /* right: 0; */
+  margin: 10px 0px 0px 10px;
 }
