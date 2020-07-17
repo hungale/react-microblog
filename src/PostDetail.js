@@ -57,7 +57,7 @@ const PostDetail = () => {
       <button onClick={() => votes("down", id)}><FontAwesomeIcon icon={faThumbsDown} /></button>
       <p>{post.body}</p>
       <hr />
-      <CommentList comments={post.comments} />
+      <CommentList comments={post.comments.sort((a, b) => b.id - a.id)} />
     </div>
   );
 };
