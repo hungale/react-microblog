@@ -13,9 +13,12 @@ const Homepage = () => {
     // have if state to check if posts already exists.
     if (!titles?.length) {
       dispatch(a.getPostsFromAPI());
+
     }
   }, [dispatch, titles]);
-
+  
+  titles.sort((a,b) => b.votes - a.votes);   
+  
   return (
     <div className="Homepage">
       WELCOME TO THE HOMEPAGE OF MICROBLOGLY!!
