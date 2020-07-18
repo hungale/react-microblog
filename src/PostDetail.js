@@ -16,10 +16,25 @@ const PostDetail = () => {
   // could possibly extract this to a custom hook if you felt like overengineering
   const loading = useSelector(state => state.loading);
 
+  // useEffect(() => {
+  //   if (!post) {
+  //     dispatch(a.getPostDetailsFromAPI(id));
+  //   } 
+  //   // return () => dispatch(a.startLoading());
+  // }, [dispatch, id, post]);
+
+  // useEffect(() => {
+  //   return () => dispatch(a.startLoading());
+  // },[]);
+
   useEffect(() => {
-    if (!post) {
+    if(!post) {
       dispatch(a.getPostDetailsFromAPI(id));
-    } 
+    } else {
+      dispatch(a.stopLoading());
+    }
+    // cleanup function, reset loading to true
+    return () => dispatch(a.startLoading());
   }, [dispatch, id, post]);
 
   // ASK: how to use loading state, so we don't have to click twice
