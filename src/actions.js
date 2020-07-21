@@ -13,11 +13,9 @@ export const getPostsFromAPI = () => {
 
 export const getPostDetailsFromAPI = (id) => {
   return async (dispatch) => {
-    // dispatch(startLoading());
     let res = await axios.get(`${BASE_URL}/api/posts/${id}`);
     // if invalid, res.data comes back as ""
     dispatch(loadPostDetails(res.data));
-    dispatch(stopLoading());
   };
 };
 
