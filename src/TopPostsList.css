@@ -1,0 +1,8 @@
+.TopPostsList {
+  border: pink solid 2px;
+  width: 20%;
+}
+
+.TopPostsList-list-title {
+  margin: 5%;
+}

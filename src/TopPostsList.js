@@ -1,5 +1,5 @@
 import React from "react";
-
+import "./TopPostsList.css";
 /**
  * Display the top 5 trending posts 
  * 
@@ -8,9 +8,13 @@ import React from "react";
 const TopPostsList = () => {
   return (
     <div className="TopPostsList">
-      <ul className="TopPostsList-list">
+      <ol className="TopPostsList-list">
+        <h3 className="TopPostsList-list-title">Top Posts</h3>
         <li>first oneeee</li>
-      </ul>
+      </ol>
     </div>
   );
 }
+
+
+export default TopPostsList;

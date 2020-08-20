@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import PostList from "./PostList";
 import * as a from "./actions";
 import "./Homepage.css";
+import TopPostsList from "./TopPostsList";
 
 
 const Homepage = () => {
@@ -21,7 +22,10 @@ const Homepage = () => {
     <div className="Homepage">
       <h3 className="Homepage-title">Homepage</h3>
       <p className="Homepage-description">See what's everyone up to!</p>
-      <PostList />
+      <div className="Homepage-container">
+        <PostList />
+        <TopPostsList />
+      </div>
     </div>
   );
 };
