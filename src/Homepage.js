@@ -19,7 +19,7 @@ const Homepage = () => {
   
   return (
     <div className="Homepage">
-      <h4 className="Homepage-title">Homepage</h4>
+      <h3 className="Homepage-title">Homepage</h3>
       <p className="Homepage-description">See what's everyone up to!</p>
       <PostList />
     </div>
