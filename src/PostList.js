@@ -8,11 +8,13 @@ const PostList = () => {
   const titles = useSelector(state => state.titles);
   const dispatch = useDispatch();
 
-  const renderPosts = () => (
-    titles.map(title => (
+  const renderPosts = () => {
+    const recentTitles = titles.slice().reverse();
+
+    return recentTitles.map(title => (
       <PostListCard key={title.id} post={title} id={title.id} votes={votes} />
-    ))
-  );
+    ));
+  }
 
   const votes = (direction, id) => {
     // dispatch to updateVotes(direction, id);

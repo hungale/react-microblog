@@ -7,7 +7,8 @@ import TopPostsList from "./TopPostsList";
 
 
 const Homepage = () => {
-  const titles = useSelector(state => state.titles.sort((a,b) => b.votes - a.votes));
+  // reverse the titles to get the most recent posts.
+  const titles = useSelector(state => state.titles);
   const dispatch = useDispatch();
 
   // maybe make this only run if there are no posts
@@ -18,6 +19,7 @@ const Homepage = () => {
     }
   }, [dispatch, titles]);
   
+
   return (
     <div className="Homepage">
       <h3 className="Homepage-title">Homepage</h3>
