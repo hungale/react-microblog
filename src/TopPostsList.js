@@ -11,7 +11,6 @@ import TopPostCard from "./TopPostCard";
 const TopPostsList = () => {
   const titles = useSelector(state => state.titles);
   
-
   const renderPosts = () => {
     // make a copy of titles so it doesn't affect the titles state.
     const topTitles = titles.slice().sort((a,b) => b.votes - a.votes).slice(0,11);
@@ -20,7 +19,7 @@ const TopPostsList = () => {
 
   return (
     <div className="TopPostsList">
-      <h3 className="TopPostsList-list-title">Top Posts</h3>
+      <h4 className="TopPostsList-list-title">Top Posts</h4>
       <ol className="TopPostsList-list">
         {renderPosts()}
       </ol>

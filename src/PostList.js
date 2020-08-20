@@ -22,9 +22,12 @@ const PostList = () => {
   }
 
   return (
-    <ul className="PostList">
-      {renderPosts()}
-    </ul>
+    <div className="PostList">
+      <h4 className="PostList-title">Most Recent</h4>
+      <ul className="PostList-list">
+        {renderPosts()}
+      </ul>
+    </div>
   );
 };
 
