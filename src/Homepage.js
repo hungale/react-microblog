@@ -23,7 +23,7 @@ const Homepage = () => {
   return (
     <div className="Homepage">
       <h3 className="Homepage-title">Homepage</h3>
-      <p className="Homepage-description">See what's everyone up to!</p>
+      <p className="Homepage-description">See what everyone's up to!</p>
       <div className="Homepage-container">
         <PostList />
         <TopPostsList />

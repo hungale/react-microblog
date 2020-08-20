@@ -15,7 +15,7 @@ const TopPostsList = () => {
     // make a copy of titles so it doesn't affect the titles state.
     const topTitles = titles.slice().sort((a,b) => b.votes - a.votes).slice(0,11);
     return topTitles.map(title => <TopPostCard key={title.id} post={title} />);
-  }
+  };
 
   return (
     <div className="TopPostsList">
@@ -25,7 +25,7 @@ const TopPostsList = () => {
       </ol>
     </div>
   );
-}
+};
 
 
 export default TopPostsList;

@@ -9,17 +9,18 @@ const PostList = () => {
   const dispatch = useDispatch();
 
   const renderPosts = () => {
+    // made a pure function with slice because would otherwise trigger re-renders
     const recentTitles = titles.slice().reverse();
 
     return recentTitles.map(title => (
       <PostListCard key={title.id} post={title} id={title.id} votes={votes} />
     ));
-  }
+  };
 
   const votes = (direction, id) => {
     // dispatch to updateVotes(direction, id);
     dispatch(a.updateVotesInAPI(direction, id));
-  }
+  };
 
   return (
     <div className="PostList">
