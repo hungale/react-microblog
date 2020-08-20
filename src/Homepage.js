@@ -3,10 +3,12 @@ import { useSelector, useDispatch } from "react-redux";
 import PostList from "./PostList";
 import * as a from "./actions";
 import "./Homepage.css";
+import TopPostsList from "./TopPostsList";
 
 
 const Homepage = () => {
-  const titles = useSelector(state => state.titles.sort((a,b) => b.votes - a.votes));
+  // reverse the titles to get the most recent posts.
+  const titles = useSelector(state => state.titles);
   const dispatch = useDispatch();
 
   // maybe make this only run if there are no posts
@@ -14,14 +16,18 @@ const Homepage = () => {
     // have if state to check if posts already exists.
     if (!titles?.length) {
       dispatch(a.getPostsFromAPI());
-
     }
   }, [dispatch, titles]);
   
+
   return (
     <div className="Homepage">
-      <h4 className="Homepage-title">WELCOME TO THE HOMEPAGE OF MICROBLOG</h4>
-      <PostList />
+      <h3 className="Homepage-title">Homepage</h3>
+      <p className="Homepage-description">See what everyone's up to!</p>
+      <div className="Homepage-container">
+        <PostList />
+        <TopPostsList />
+      </div>
     </div>
   );
 };

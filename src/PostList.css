@@ -1,7 +1,16 @@
 .PostList {
+  width: 80%;
+}
+
+.PostList-list {
   list-style: none;
   display: flex;
   flex-wrap: wrap;
-  justify-content: flex-start;
+ 
+}
+
+.PostList-title {
+  margin: 0px 50px;
+  font-weight: lighter;
 }
 

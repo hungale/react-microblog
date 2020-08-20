@@ -8,21 +8,27 @@ const PostList = () => {
   const titles = useSelector(state => state.titles);
   const dispatch = useDispatch();
 
-  const renderPosts = () => (
-    titles.map(title => (
+  const renderPosts = () => {
+    // made a pure function with slice because would otherwise trigger re-renders
+    const recentTitles = titles.slice().reverse();
+
+    return recentTitles.map(title => (
       <PostListCard key={title.id} post={title} id={title.id} votes={votes} />
-    ))
-  );
+    ));
+  };
 
   const votes = (direction, id) => {
     // dispatch to updateVotes(direction, id);
     dispatch(a.updateVotesInAPI(direction, id));
-  }
+  };
 
   return (
-    <ul className="PostList">
-      {renderPosts()}
-    </ul>
+    <div className="PostList">
+      <h4 className="PostList-title">Most Recent</h4>
+      <ul className="PostList-list">
+        {renderPosts()}
+      </ul>
+    </div>
   );
 };
 
