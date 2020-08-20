@@ -1,9 +1,10 @@
-.Homepage {
-
-}
 
 .Homepage-title {
-  padding: 10px;
-  margin: 25px auto;
+  margin: 30px 0px 0px 50px;
   width: fit-content;
 }
+
+.Homepage-description {
+  margin: 20px 0px 30px 50px;
+}
+

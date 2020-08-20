@@ -5,6 +5,7 @@ import NewPost from "./NewPost";
 import Homepage from "./Homepage";
 import PostDetail from "./PostDetail";
 import PostForm from "./PostForm";
+import "./Routes.css";
 
 const Routes = () => {
   return (

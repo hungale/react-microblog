@@ -14,13 +14,13 @@ const Homepage = () => {
     // have if state to check if posts already exists.
     if (!titles?.length) {
       dispatch(a.getPostsFromAPI());
-
     }
   }, [dispatch, titles]);
   
   return (
     <div className="Homepage">
-      <h4 className="Homepage-title">WELCOME TO THE HOMEPAGE OF MICROBLOG</h4>
+      <h4 className="Homepage-title">Homepage</h4>
+      <p className="Homepage-description">See what's everyone up to!</p>
       <PostList />
     </div>
   );
