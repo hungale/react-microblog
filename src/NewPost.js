@@ -9,6 +9,6 @@ const NewPost = () => {
       <PostForm />
     </div>
   );
-}
+};
 
 export default NewPost;
