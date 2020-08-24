@@ -4,12 +4,24 @@ import { useSelector, useDispatch } from "react-redux";
 import * as a from "./actions";
 import "./PostList.css";
 
+/**
+ * PostList renders the most recent posts in a list.
+ * 
+ * `votes` method is passed down to every PostListCard component as a prop
+ *  to handle votes for each post. 
+ */
 const PostList = () => {
   const titles = useSelector(state => state.titles);
   const dispatch = useDispatch();
 
   const renderPosts = () => {
     const recentTitles = titles.slice().reverse();
+
+    // if there aren't any titles created yet, render this message instead of 
+    // keeping list empty. 
+    if (recentTitles.length === 0) {
+      return <p className="PostList-message">No micro-posts yet. Be the first to create a micro-post!</p>
+    } 
 
     return recentTitles.map(title => (
       <PostListCard key={title.id} post={title} id={title.id} votes={votes} />
