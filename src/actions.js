@@ -1,7 +1,7 @@
 import * as t from "./actionTypes";
 import axios from "axios";
 
-const BASE_URL = "http://localhost:5000"
+const BASE_URL = "https://micro-blogly.herokuapp.com";
 
 export const getPostsFromAPI = () => {
   // try-catch block would be nice refactor for AJAX requests
