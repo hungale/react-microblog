@@ -1,10 +1,62 @@
 .PostDetail {
   width: 80%;
-  margin-left: 10px;
-  border: 2px solid black;
+  margin: 30px 0px 0px 50px;
 }
 
-.PostDetail button {
-  position: relative;
-  right: 0;
+.PostDetail-header {
+  display: flex;
+  align-items: center;
+}
+
+.PostDetail-btn {
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  color: white;
+}
+.PostDetail-edit-delete {
+  display: flex;
+  width: 20%;
+  margin-left: 3%;
+}
+
+.PostDetail-edit {
+  background-color: lightskyblue;
+  margin-right: 20px;
+}
+
+.PostDetail-delete {
+  background-color: lightcoral;
+}
+
+.PostDetail-up {
+  background-color: lightgreen;
+  margin-right: 1%;
+}
+
+.PostDetail-down {
+  background-color: lightcoral;
+}
+
+.PostDetail-vote-btn {
+  margin-top: 0.5%;
+}
+
+.PostDetail-title {
+  display: inline;
+}
+
+.PostDetail-description {
+  margin: 1% 0% 1% 0%;
+  font-weight: 50;
+}
+
+.PostDetail-body {
+  border: lightgray solid 1px;
+  border-radius: 5px;
+  padding: 1%;
+}
+
+.PostDetail-votes {
+  margin-left: 0.3%;
 }

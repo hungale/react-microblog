@@ -30,8 +30,8 @@ const CommentForm = ({ text = "", commentId = undefined, handleEdit }) => {
 
   return (
     <form onSubmit={handleSubmit} className="CommentForm">
-      <input name="text" value={formData.text} placeholder="New Comment" onChange={handleChange} required />
-      <button>Add</button>
+      <textarea name="text" value={formData.text} placeholder="New Comment" onChange={handleChange} required />
+      <button className="CommentForm-add">Add</button>
     </form>
   );
 };
