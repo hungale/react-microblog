@@ -15,15 +15,15 @@ const PostDetail = () => {
 
   // could possibly extract this to a custom hook if you felt like overengineering
   const loading = useSelector(state => state.loading);
-  
+
   // clean up only when the component unmounts
   // https://stackoverflow.com/a/56795775
   useEffect(() => {
     return () => dispatch(a.startLoading());
-  },[dispatch]);
+  }, [dispatch]);
 
   useEffect(() => {
-    if(!post) {
+    if (!post) {
       dispatch(a.getPostDetailsFromAPI(id));
     } else {
       dispatch(a.stopLoading());
@@ -56,19 +56,25 @@ const PostDetail = () => {
 
   return (
     <div className="PostDetail">
-      <h1>{post.title}
-        <NavLink exact to={`/posts/${id}/edit`}>
-          <button>Edit</button>
-        </NavLink>
-        <NavLink exact to="/">
-          <button onClick={handleDelete}>Delete</button>
-        </NavLink>
-      </h1>
-      <h3>{post.description}</h3>
-      <span>{post.votes} votes</span>
-      <button onClick={() => votes("up", id)}><FontAwesomeIcon icon={faThumbsUp} /></button>
-      <button onClick={() => votes("down", id)}><FontAwesomeIcon icon={faThumbsDown} /></button>
-      <p>{post.body}</p>
+      <div className="PostDetail-header">
+        <h2 className="PostDetail-title">{post.title}</h2>
+        <div className="PostDetail-edit-delete">
+          <NavLink exact to={`/posts/${id}/edit`}>
+            <button className="PostDetail-btn PostDetail-edit">Edit</button>
+          </NavLink>
+          <NavLink exact to="/">
+            <button className="PostDetail-btn PostDetail-delete" onClick={handleDelete}>Delete</button>
+          </NavLink>
+        </div>
+      </div>
+
+      <h5 className="PostDetail-description">{post.description}</h5>
+      <p className="PostDetail-body">{post.body}</p>
+      <span className="PostDetail-votes">{post.votes} votes</span>
+      <div className="PostDetail-vote-btn">
+        <button className="PostDetail-btn PostDetail-up" onClick={() => votes("up", id)}><FontAwesomeIcon icon={faThumbsUp} /></button>
+        <button className="PostDetail-btn PostDetail-down" onClick={() => votes("down", id)}><FontAwesomeIcon icon={faThumbsDown} /></button>
+      </div>
       <hr />
       <CommentList comments={post.comments.sort((a, b) => b.id - a.id)} />
     </div>

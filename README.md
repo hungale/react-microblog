@@ -1,5 +1,11 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+Created by @hungale and @dogpineapple 
+
+## Microblog
+
+The purpose of this application is to allow users to anonymously create micro-posts about anything and everything. 
+
 ## Available Scripts
 
 In the project directory, you can run:

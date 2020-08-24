@@ -2,3 +2,19 @@
   display: flex;
   margin-bottom: 10px;
 }
+
+.CommentForm-add {
+  border: none;
+  background: rgb(85, 116, 255);
+  color: white;
+  margin-left: 0.7%;
+  border-radius: 5px;
+}
+
+.CommentForm > textarea {
+  margin-left: 1%;
+  border: lightgray 1px solid;
+  padding: 5px;
+  width: 520px;
+  border-radius: 5px;
+}

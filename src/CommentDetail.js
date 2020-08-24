@@ -3,7 +3,13 @@ import * as a from "./actions";
 import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import CommentForm from "./CommentForm";
+import "./CommentDetail.css";
 
+/**
+ * CommentDetail component renders a comment.
+ * 
+ * Handles the delete and edit changes of a comment.
+ */
 const CommentDetail = ({ comment }) => {
   const { id } = useParams();
   const dispatch = useDispatch();
@@ -20,9 +26,9 @@ const CommentDetail = ({ comment }) => {
 
   return (
     <li className="CommentDetail">
-      <button onClick={handleDelete}>x</button>
-      <button onClick={handleEdit}>Edit</button>
-      <span>{comment.text}</span>
+      <button className="CommentDetail-delete CommentDetail-btn" onClick={handleDelete}>x</button>
+      <button className="CommentDetail-edit CommentDetail-btn" onClick={handleEdit}>Edit</button>
+      <span className="CommentDetail-comment">{comment.text}</span>
       { isEdit ? <CommentForm text={comment.text} commentId={comment.id} handleEdit={handleEdit} /> : null}
     </li>
   );
