@@ -1,6 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-
+import "./TopPostCard.css";
 
 /**
  * Renders a card to list on the TopPostsList component

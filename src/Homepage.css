@@ -9,3 +9,13 @@
 .Homepage-container {
   display: flex;
 }
+
+@media screen and (max-width: 450px) {
+  .Homepage-title {
+    margin: 10px; 
+  }
+
+  .Homepage-description {
+    margin: 15px;
+  }
+}

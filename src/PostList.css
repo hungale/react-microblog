@@ -6,7 +6,6 @@
   list-style: none;
   display: flex;
   flex-wrap: wrap;
- 
 }
 
 .PostList-title {
@@ -16,5 +15,21 @@
 
 .PostList-message {
   margin: 20px;
+}
+
+@media screen and (max-width: 450px) {
+  .PostList-title {
+    font-size: 1.4rem;
+    margin: 0% 4%;
+  }
+
+  .PostList-list {
+    list-style: none;
+    display: flex;
+    justify-content: flex-start;
+    padding: 0% 4%;
+  }
+  
+  
 }
 
