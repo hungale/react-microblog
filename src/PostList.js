@@ -21,7 +21,15 @@ const PostList = () => {
     // if there aren't any titles created yet, render this message instead of 
     // keeping list empty. 
     if (recentTitles.length === 0) {
-      return <p className="PostList-message">No micro-posts yet. Be the first to create a micro-post!</p>
+      return (
+      <div>
+        <p className="PostList-message">
+        No micro-posts yet. Be the first to create a micro-post!
+          <br/>
+          <small>(Servers might need 10 seconds to warm up)</small>
+        </p>
+      </div>
+      )
     } 
 
     return recentTitles.map(title => (
